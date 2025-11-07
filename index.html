@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vedant Mishra — Portfolio</title>
 
-  <!-- Link to external CSS -->
   <link rel="stylesheet" href="style.css" />
-  <!-- Google font (optional) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -21,10 +19,10 @@
 
       <nav class="main-nav" aria-label="Main navigation">
         <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -32,11 +30,10 @@
 
   <main>
 
-    <!-- HERO / ABOUT -->
     <section id="about" class="container hero">
-      <div class="hero-left card profile-card">
+      <div class="hero-left card profile-card animate-on-scroll">
         <div class="profile-row">
-          <img src="profile.jpeg" alt="Vedant Mishra — profile" class="profile-photo">
+          <img src="images/profile.jpeg" alt="Vedant Mishra — profile" class="profile-photo">
           <div class="profile-meta">
             <h2 class="name">Vedant Mishra</h2>
             <p class="role">Web Developer · Problem Solver · Learner</p>
@@ -51,11 +48,15 @@
         </div>
 
         <div class="about-text">
-          <p class="tagline">Confident and ambitious student passionate about leveraging technology to solve real-world problems. Proven problem-solver with strong foundational knowledge in <strong>Data Structures</strong>, <strong>OOPs</strong>, and modern development practices. Eager to contribute excellent technical and organizational skills in a professional, growth-focused environment.</p>
+          <p class="tagline">
+            Confident and ambitious student passionate about leveraging technology to solve real-world problems.
+            Proven problem-solver with strong foundational knowledge in <strong>Data Structures</strong>, <strong>OOPs</strong>, <strong>Java</strong>,
+            and modern development practices. Eager to contribute excellent technical and organizational skills in a professional, growth-focused environment.
+          </p>
         </div>
       </div>
 
-      <div class="hero-right card quick-stats">
+      <div class="hero-right card quick-stats animate-on-scroll">
         <h3>Fast Facts</h3>
         <ul>
           <li><strong>Course:</strong> B.Tech — Computer Science & Engineering (2nd Year)</li>
@@ -64,80 +65,68 @@
         </ul>
 
         <div class="resume-actions">
-          <a href="#" class="btn btn-primary" id="downloadResume">Download Resume</a>
+          <a href="#" id="downloadResume" class="btn btn-primary">Download Resume</a>
           <a href="#projects" class="btn btn-ghost">View Projects</a>
         </div>
       </div>
     </section>
 
-    <!-- SKILLS -->
     <section id="skills" class="container">
-      <h2 class="section-title">Skills</h2>
+      <h2 class="section-title animate-on-scroll">Skills</h2>
 
       <div class="skills-grid">
-        <!-- skill item with progress -->
-        <div class="skill card">
+        <div class="skill card animate-on-scroll">
           <div class="skill-head">
             <h4>Data Structures & Algorithms</h4>
             <span>Strong</span>
           </div>
-          <div class="progress">
-            <div class="progress-bar" style="width:85%"></div>
-          </div>
+          <div class="progress"><div class="progress-bar" style="width:85%"></div></div>
           <p class="skill-small">Arrays, Linked Lists, Trees, Graphs, Sorting, Searching & Complexity analysis.</p>
         </div>
 
-        <div class="skill card">
+        <div class="skill card animate-on-scroll">
           <div class="skill-head">
             <h4>Object-Oriented Programming (Java)</h4>
             <span>Strong</span>
           </div>
-          <div class="progress">
-            <div class="progress-bar" style="width:82%"></div>
-          </div>
-          <p class="skill-small">Core OOP principles, design patterns, classes, inheritance, polymorphism & encapsulation.</p>
+          <div class="progress"><div class="progress-bar" style="width:82%"></div></div>
+          <p class="skill-small">Core OOP principles, classes, inheritance, polymorphism & encapsulation.</p>
         </div>
 
-        <div class="skill card">
+        <div class="skill card animate-on-scroll">
           <div class="skill-head">
             <h4>Python & Scripting</h4>
             <span>Good</span>
           </div>
-          <div class="progress">
-            <div class="progress-bar" style="width:80%"></div>
-          </div>
-          <p class="skill-small">Web scraping, automation, data processing, basic ML workflows.</p>
+          <div class="progress"><div class="progress-bar" style="width:80%"></div></div>
+          <p class="skill-small">Automation, data processing, and basic ML workflows.</p>
         </div>
 
-        <div class="skill card">
+        <div class="skill card animate-on-scroll">
           <div class="skill-head">
             <h4>Web (HTML, CSS, JS)</h4>
             <span>Good</span>
           </div>
-          <div class="progress">
-            <div class="progress-bar" style="width:78%"></div>
-          </div>
-          <p class="skill-small">Responsive layouts, DOM, modern CSS (Flexbox/Grid) and small interactive apps.</p>
+          <div class="progress"><div class="progress-bar" style="width:78%"></div></div>
+          <p class="skill-small">Responsive layouts, Flexbox/Grid, DOM & small interactive apps.</p>
         </div>
-
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects" class="container">
-      <h2 class="section-title">Projects</h2>
+      <h2 class="section-title animate-on-scroll">Projects</h2>
 
       <div class="projects-grid">
-        <article class="project-card card">
-          <img src="project.jpeg" alt="Digital Declutter project screenshot" class="project-thumb">
+        <article class="project-card card animate-on-scroll">
+          <img src="images/project.jpeg" alt="Digital Declutter project screenshot" class="project-thumb">
           <div class="project-content">
             <h3>Digital Declutter — Smart Subscription Handling</h3>
             <p class="muted">A productivity web application that helps users identify, track and optimize subscriptions. Features include renewal reminders, total spend tracking, duplicate-subscription detection, and an intelligent dashboard to regain control over recurring costs.</p>
 
             <ul class="project-tags">
               <li>Python</li>
-              <li>Flask</li>
-              <li>OCR & NLP (notes parsing)</li>
+              <li>CTK</li>
+              <li>OCR & NLP</li>
               <li>SQLite</li>
             </ul>
 
@@ -148,33 +137,28 @@
           </div>
         </article>
 
-        <!-- placeholder for more projects -->
-        <article class="project-card card placeholder">
+        <article class="project-card card placeholder animate-on-scroll">
           <div class="project-content">
             <h3>Other Projects</h3>
-            <p class="muted">More projects — algorithms, mini web apps, and coursework — available on request or on my GitHub.</p>
-            <div class="project-cta">
-              <a href="#" class="btn btn-ghost">GitHub</a>
-            </div>
+            <p class="muted">More projects — algorithms, mini web apps, and coursework — available on my GitHub.</p>
+            <div class="project-cta"><a href="#" class="btn btn-ghost">GitHub</a></div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- CANVAS / SMALL VISUAL -->
     <section class="container">
-      <h2 class="section-title">Interactive Canvas</h2>
-      <div class="card canvas-wrap">
+      <h2 class="section-title animate-on-scroll">Interactive Canvas</h2>
+      <div class="card canvas-wrap animate-on-scroll">
         <canvas id="myCanvas" width="780" height="120" aria-label="Greeting canvas"></canvas>
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" class="container">
-      <h2 class="section-title">Contact</h2>
+      <h2 class="section-title animate-on-scroll">Contact</h2>
 
       <div class="contact-grid">
-        <form class="contact-form card" onsubmit="event.preventDefault(); alert('Message sent (demo).');">
+        <form id="contactForm" class="contact-form card animate-on-scroll" novalidate>
           <label for="name">Name</label>
           <input id="name" type="text" placeholder="Your name" required>
 
@@ -187,9 +171,9 @@
           <button class="btn btn-primary" type="submit">Send Message</button>
         </form>
 
-        <aside class="card contact-details">
+        <aside class="card contact-details animate-on-scroll">
           <h4>Contact Info</h4>
-          <p><strong>Email:</strong> <a href="mailto:vedantmishra0605@gmail.com">vedantmishra0605@gmail.com</a></p>
+          <p><strong>Email:</strong> <a href="mailto:vedant@example.com">vedant@example.com</a></p>
           <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/vedant-mishra-b629612b7/" target="_blank" rel="noopener noreferrer">vedant-mishra</a></p>
           <p><strong>Role:</strong> B.Tech CSE Student — Open to Internships</p>
           <div class="small-note muted">Resume available on request / via the download button above.</div>
@@ -205,23 +189,6 @@
     </div>
   </footer>
 
-  <!-- Small inline scripts for canvas + interactions -->
-  <script>
-    // canvas greeting
-    const canvas = document.getElementById('myCanvas');
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = '#0f1724';
-    ctx.font = '20px Inter, Arial';
-    ctx.fillText('Hello — I build practical projects like Digital Declutter.', 12, 40);
-    ctx.fillStyle = '#0a9bd6';
-    ctx.fillRect(12,60,220,8);
-
-    // Dummy resume download link (replace with actual URL or file)
-    document.getElementById('downloadResume').addEventListener('click', function(e) {
-      e.preventDefault();
-      alert('Resume download placeholder — attach your resume file to enable this.');
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
