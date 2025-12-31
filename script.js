@@ -1,130 +1,101 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- Smooth Scroll Nav ---------- */
+  /* 🌐 Smooth Scroll Navigation */
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      document.querySelector(this.getAttribute('href'))
+      .scrollIntoView({ behavior:'smooth' });
     });
   });
 
-  /* ---------- Resume Download Button ---------- */
-  const resumeBtn = document.querySelector('.btn-primary[href*="Resume"]');
+  /* 📄 Resume Download Button */
+  const resumeBtn = document.querySelector('.btn-primary[href$=".pdf"]');
   if (resumeBtn) {
     resumeBtn.addEventListener('click', () => {
-      window.location.href = "VedantMishra_Resume.pdf";
+      window.open("VedantMishra_Resume.pdf", "_blank");
     });
   }
 
-  /* ---------- Contact Form Validation ---------- */
+  /* 📬 Contact Form */
   const form = document.getElementById('contactForm');
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  form?.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const message = form.message.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-      if (!name || !email || !message) {
-        showPopup("⚠️ Please fill all the fields!");
-        return;
-      }
-      if (!emailRegex.test(email)) {
-        showPopup("❌ Invalid Email Address!");
-        return;
-      }
+    if (!name || !email || !message)
+      return showPopup("⚠️ Please fill all fields!");
 
-      form.reset();
-      showPopup("🎉 Message Sent Successfully!");
-    });
+    if (!emailRegex.test(email))
+      return showPopup("❌ Invalid Email!");
+
+    form.reset();
+    showPopup("🎉 Message Sent Successfully!");
+  });
+
+  /* 🔔 Popup Alerts */
+  function showPopup(text) {
+    const pop = document.createElement("div");
+    pop.className = "popup-msg";
+    pop.innerText = text;
+    document.body.appendChild(pop);
+    setTimeout(() => pop.classList.add("fade"), 1000);
+    setTimeout(() => pop.remove(), 2000);
   }
 
-  function showPopup(msg) {
-    const div = document.createElement("div");
-    div.className = "popup-msg";
-    div.innerText = msg;
-    document.body.appendChild(div);
-    setTimeout(() => div.remove(), 2500);
-  }
-
-  /* ---------- Scroll Animation ---------- */
-  const elements = document.querySelectorAll('.animate-on-scroll');
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
+  /* 👀 Section Reveal Animation */
+  const reveals = document.querySelectorAll('.animate-on-scroll');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add("is-visible");
+        io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
+  },{threshold:.18});
+  reveals.forEach(el=>io.observe(el));
 
-  elements.forEach(el => observer.observe(el));
-
-  /* ---------- Canvas Typing Animation ---------- */
+  /* 📝 Canvas Typing Animation */
   const canvas = document.getElementById('myCanvas');
-  if (canvas && canvas.getContext) {
+  if(canvas?.getContext){
+    const ctx=canvas.getContext("2d");
+    let w,h,t=0;
+    const text="Passionate about AI, ML and solving real-world problems with technology.";
+    let i=0,sub="";
 
-    const ctx = canvas.getContext('2d');
-    let w = canvas.width, h = canvas.height;
-    let t = 0;
+    const resize=()=>{
+      w=canvas.width=canvas.parentNode.offsetWidth-30;
+      h=canvas.height=130;
+    };
+    resize(); window.addEventListener("resize",resize);
 
-    const text = "Passionate about AI, ML and building tech for real-world use cases.";
-    let index = 0;
-    let currentText = "";
-    let typing = false;
+    const draw = ()=>{
+      ctx.clearRect(0,0,w,h);
+      ctx.fillStyle="#ffffff";
+      ctx.fillRect(0,0,w,h);
+      ctx.fillStyle="#0f1724";
+      ctx.textAlign="center";
+      ctx.font="600 17px Inter";
+      const cursor=(Math.floor(t*6)%2)?"|":"";
+      ctx.fillText(sub+cursor,w/2,h/2+5);
+      t+=0.03;
+      requestAnimationFrame(draw);
+    };
 
-    function resizeCanvas() {
-      const rect = canvas.parentNode.getBoundingClientRect();
-      canvas.width = Math.max(300, rect.width - 40);
-      canvas.height = 130;
-      w = canvas.width; h = canvas.height;
-    }
-
-    resizeCanvas();
-    window.addEventListener("resize", resizeCanvas);
-
-    function drawCanvas() {
-      ctx.clearRect(0, 0, w, h);
-      t += 0.02;
-
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(0, 0, w, h);
-
-      ctx.fillStyle = '#0f1724';
-      ctx.font = '700 16px Inter, sans-serif';
-      ctx.textAlign = 'center';
-
-      const cursor = (typing && Math.floor(t * 10) % 2) ? '|' : '';
-      ctx.fillText(currentText + cursor, w / 2, h / 2);
-
-      requestAnimationFrame(drawCanvas);
-    }
-
-    async function typeText() {
-      typing = true;
-      for (let i = 0; i <= text.length; i++) {
-        currentText = text.substring(0, i);
-        await new Promise(res => setTimeout(res, 45));
+    const type=async()=>{
+      for(i=0;i<=text.length;i++){
+        sub=text.substring(0,i);
+        await new Promise(r=>setTimeout(r,45));
       }
-      typing = false;
-    }
+    };
 
-    const canvasObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && index === 0) {
-          drawCanvas();
-          typeText();
-          index = 1;
-        }
-      });
-    }, { threshold: 0.5 });
-
-    canvasObserver.observe(canvas);
+    new IntersectionObserver(e=>{
+      if(e[0].isIntersecting){draw();type();}
+    },{threshold:.5}).observe(canvas);
   }
 
 });
